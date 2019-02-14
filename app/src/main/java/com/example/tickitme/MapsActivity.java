@@ -7,6 +7,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -22,6 +23,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+    public class Lot{
+        String lotName;
+        boolean isMeter;
+        double ticketPrice;
+        boolean PayByPark;
+        LatLng position;
+
+
+        //constructor
+        public Lot(String name, boolean issMeter, double xcoord, double ycoord, double ticketPriceIn, boolean PayByParking){
+            position = new LatLng(xcoord, ycoord);
+            lotName = name;
+            isMeter = issMeter;
+            ticketPrice = ticketPriceIn;
+            PayByPark = PayByParking;
+        }
+
+
+        public String getLotName(){
+            return lotName;
+        }
+        public boolean getisMeter(){
+            return isMeter;
+        }
+        public double getticketPrice(){
+            return ticketPrice;
+        }
+        public boolean getPayByPark(){
+            return PayByPark;
+        }
+        public LatLng getposition(){
+            return position;
+        }
+
+
+
+
+
+
     }
 
 
@@ -39,9 +80,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(42.726827, -84.475914);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Shaw"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        //create list
+        Lot[] lotList = new Lot[2];
+        lotList[0] = new Lot("Shaw", false, 42.726827, -84.475914, 10, false);
+        lotList[1] = new Lot("Wharton", false, 42.7239, -84.4696, 10, true);
+
+
+
+
+/*
+        for each lot in lostList{
+            mMap.addMarker(new MarkerOptions().position(lot.position).title(lot.Name));)
+        }
+*/
+        for (int i = 0; i < lotList.length; i++) {
+            if(lotList[i].getPayByPark() == true){
+            mMap.addMarker(new MarkerOptions().position(lotList[i].getposition()).title(lotList[i].getLotName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
+            else{
+                mMap.addMarker(new MarkerOptions().position(lotList[i].getposition()).title(lotList[i].getLotName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+            }
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(lotList[0].getposition()));
+
     }
 }
