@@ -8,7 +8,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -24,47 +23,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-    public class Lot{
-        String lotName;
-        boolean isMeter;
-        double ticketPrice;
-        boolean PayByPark;
-        LatLng position;
-
-
-        //constructor
-        public Lot(String name, boolean issMeter, double xcoord, double ycoord, double ticketPriceIn, boolean PayByParking){
-            position = new LatLng(xcoord, ycoord);
-            lotName = name;
-            isMeter = issMeter;
-            ticketPrice = ticketPriceIn;
-            PayByPark = PayByParking;
-        }
-
-
-        public String getLotName(){
-            return lotName;
-        }
-        public boolean getisMeter(){
-            return isMeter;
-        }
-        public double getticketPrice(){
-            return ticketPrice;
-        }
-        public boolean getPayByPark(){
-            return PayByPark;
-        }
-        public LatLng getposition(){
-            return position;
-        }
-
-
-
-
-
-
-    }
-
 
     /**
      * Manipulates the map once available.
@@ -94,9 +52,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions().position(lot.position).title(lot.Name));)
         }
 */
+//http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C246959
+
+
+
         for (int i = 0; i < lotList.length; i++) {
             if(lotList[i].getPayByPark() == true){
-            mMap.addMarker(new MarkerOptions().position(lotList[i].getposition()).title(lotList[i].getLotName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+                mMap.addMarker(new MarkerOptions().position(lotList[i].getposition()).title(lotList[i].getLotName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
             }
             else{
                 mMap.addMarker(new MarkerOptions().position(lotList[i].getposition()).title(lotList[i].getLotName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
