@@ -41,8 +41,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //create list
         Lot[] lotList = new Lot[2];
-        lotList[0] = new Lot("Shaw", false, 42.726827, -84.475914, 10, false);
-        lotList[1] = new Lot("Wharton", false, 42.7239, -84.4696, 10, true);
+        lotList[0] = new Lot("Shaw", "false", 42.726827, -84.475914, "$10.00", "false");
+        lotList[1] = new Lot("Wharton", "false", 42.7239, -84.4696, "$10.00", "true");
 
 
 
