@@ -1,0 +1,3 @@
+NAME        XCoordinate     YCoordinate     MeterBool       TicketPrice     PayByParking
+Shaw        42.726827       -84.475914      false           25              false
+Wharton     42.7239         -84.4696        true            25              true
