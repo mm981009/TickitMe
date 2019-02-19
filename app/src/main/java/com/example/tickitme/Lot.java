@@ -4,14 +4,14 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class Lot{
     String lotName;
-    boolean isMeter;
-    double ticketPrice;
-    boolean PayByPark;
+    String isMeter;
+    String ticketPrice;
+    String PayByPark;
     LatLng position;
 
 
     //constructor
-    public Lot(String name, boolean issMeter, double xcoord, double ycoord, double ticketPriceIn, boolean PayByParking){
+    public Lot(String name, String issMeter, double xcoord, double ycoord, String ticketPriceIn, String PayByParking){
         position = new LatLng(xcoord, ycoord);
         lotName = name;
         isMeter = issMeter;
@@ -23,13 +23,13 @@ public class Lot{
     public String getLotName(){
         return lotName;
     }
-    public boolean getisMeter(){
+    public String getisMeter(){
         return isMeter;
     }
-    public double getticketPrice(){
+    public String getticketPrice(){
         return ticketPrice;
     }
-    public boolean getPayByPark(){
+    public String getPayByPark(){
         return PayByPark;
     }
     public LatLng getposition(){
